@@ -1,0 +1,11 @@
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.csprojAssemblyReference.cache
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.Form1.resources
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.Properties.Resources.resources
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.csproj.GenerateResource.cache
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.csproj.CoreCompileInputs.cache
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\bin\Debug\ADPP_CW.exe.config
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\bin\Debug\ADPP_CW.exe
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\bin\Debug\ADPP_CW.pdb
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.exe
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.pdb
+C:\Users\1\source\repos\ADPP_CW\ADPP_CW\obj\Debug\ADPP_CW.Start.resources
