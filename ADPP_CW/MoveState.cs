@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace ADPP_CW
 {
-    class MoveState : State
+    public class MoveState : State
     {
         int move = 300;
         int left = 50;
@@ -16,7 +10,7 @@ namespace ADPP_CW
         public MoveState(Instructor instructor):base(instructor)
         {
             if (instructor.Gear != 1)
-                MessageBox.Show("Включай первую (1)");
+                Answer = "Включай первую (1)";
         }
         public override void brakePedalHandler(object sender, object obj)
         {
@@ -35,11 +29,11 @@ namespace ADPP_CW
 
         public override void gasPedalHandler(object sender, object obj)
         {
-            if (left == 0) MessageBox.Show("Всё приехали. Пересдача через год...");
+            if (left == 0) Answer = "Всё приехали. Пересдача через год...";
             if (!gear)
             {
-                if (!instructor.HasClutch) { MessageBox.Show("Сцепление выжимай..."); return; }
-                if (instructor.Gear != 1) { MessageBox.Show("Включи первую..."); return; }
+                if (!instructor.HasClutch) { Answer = "Сцепление выжимай..."; return; }
+                if (instructor.Gear != 1) { Answer = "Включи первую..."; return; }
 
             }
             else if (move > 0)
@@ -50,7 +44,7 @@ namespace ADPP_CW
             {
                 if (!turn)
                 {
-                    MessageBox.Show("Поворачивай налево (A,D) ");
+                    Answer = "Поворачивай налево (A,D) ";
                     turn = true;
                 }
                 else left--;
@@ -59,30 +53,31 @@ namespace ADPP_CW
 
         public override void handbrakeHandler(object sender, object obj)
         {
-            MessageBox.Show("Ну вот щас на ручник встать в движении вообще не хватало");
+            Answer = "Ну вот щас на ручник встать в движении вообще не хватало";
         }
 
         public override void steeringWheelHandler(object sender, object obj)
         {
             if(turn)
             {
-                if (instructor.Angle > 0) MessageBox.Show("Тебя в школе не учили где право, а где лево? Это вообще то право!");
+                if (instructor.Angle > 0) Answer = "Тебя в школе не учили где право, а где лево? Это вообще то право!";
             }
         }
 
         public override void transmissionHandler(object sender, object obj)
         {
-            if (!instructor.HasClutch) { MessageBox.Show("Сцепление..."); return; }
+            if (!instructor.HasClutch) { Answer = "Сцепление..."; return; }
             instructor.Gear = (obj as Transmission).CurrentGear;
             if(instructor.Gear == 1)
             {
                 gear = true;
-                MessageBox.Show("Молодец, а теперь газуй (W)");
+                Answer = "Молодец, а теперь газуй (W)";
             }
             else
             {
-               if(!gear) MessageBox.Show("Ой да блин не та передача ты Олежа");
+               if(!gear) Answer = "Ой да блин не та передача ты Олежа";
             }
         }
     }
 }
+

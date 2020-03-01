@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\Device.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+
+namespace ADPP_CW
+{
+    public enum DeviceType
+    {
+        Undefined,
+        SteeringWheel,
+        Transmission,
+        GasPedal,
+        BrakePedal,
+        Handbrake,
+        Windshield,
+        ClutchPedal,
+        Headlights,
+        EngineIgnition
+    }
+    public delegate void HandleProc(Device sender,object obj);
+    abstract public class Device
+    {
+        protected static int sequenceId = 0;
+        protected int id;
+        protected String description;
+        protected List&lt;HandleProc&gt; handlers = new List&lt;HandleProc&gt;();    
+
+        public Device()
+        {
+            this.id = sequenceId++;
+        }
+
+        public string Description { get =&gt; description; set =&gt; description = value; }
+        public int ID { get =&gt; id; }    
+
+        public void AddHandler(HandleProc handler)
+        {
+            handlers.Add(handler);
+        }
+
+        public void RemoveHandler(HandleProc handler)
+        {
+            handlers.Remove(handler);
+        }
+
+        public void Update(object value)
+        {
+            foreach (HandleProc handler in handlers)
+                handler(this, value);
+        }
+
+        public abstract DeviceType Type { get; }
+        public abstract object Data { get; }
+        public abstract bool DevicesFound { get; }
+        public abstract Device Clone();
+        public abstract void Execute(object obj);
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[22,9,22,45,1],[25,9,25,70,1],[27,9,27,24,1],[28,9,28,10,1],[29,13,29,36,1],[30,9,30,10,1],[32,44,32,55,0],[32,64,32,83,0],[33,32,33,34,0],[36,9,36,10,1],[37,13,37,35,1],[38,9,38,10,1],[41,9,41,10,0],[42,13,42,38,0],[43,9,43,10,0],[46,9,46,10,1],[47,13,47,20,1],[47,22,47,40,1],[47,41,47,43,1],[47,44,47,52,1],[48,17,48,38,1],[49,9,49,10,1]]);
+    </script>
+  </body>
+</html>

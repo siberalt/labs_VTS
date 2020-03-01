@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\source\repos\siberalt\labs_VTS\ADPP_CW\Device adapters\KeyboardSteeringWheel.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+
+using System;
+
+namespace ADPP_CW
+{
+    public class KeyboardSteeringWheel : SteeringWheel
+    {
+        public KeyboardSteeringWheel()
+        {
+            
+        }
+
+        public KeyboardSteeringWheel(KeyboardSteeringWheel value)
+        {
+            this.Description = value.Description;
+        }
+
+        public override Device Clone()
+        {
+            return null;
+        }
+        
+
+        public override void Execute(object obj)
+        {
+            Tuple&lt;int, double&gt; tuple = (Tuple&lt;int, double&gt;)obj;
+            this.angle = tuple.Item2;
+            this.turn = tuple.Item1;
+            base.Update(obj);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,9,8,39,1],[9,9,9,10,1],[11,9,11,10,1],[13,9,13,66,0],[14,9,14,10,0],[15,13,15,50,0],[16,9,16,10,0],[19,9,19,10,0],[20,13,20,25,0],[21,9,21,10,0],[25,9,25,10,1],[26,13,26,64,1],[27,13,27,38,1],[28,13,28,37,1],[29,13,29,30,1],[30,9,30,10,1]]);
+    </script>
+  </body>
+</html>

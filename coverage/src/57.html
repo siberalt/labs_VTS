@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\EngineIgnition.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+
+namespace ADPP_CW
+{
+    public abstract class EngineIgnition : Device
+    {
+        protected bool hasIgnition = false;
+        public bool HasIngnition =&gt; hasIgnition;
+        public override DeviceType Type =&gt; DeviceType.EngineIgnition;
+
+        public override object Data =&gt; hasIgnition;
+
+        public override bool DevicesFound =&gt; true;
+
+        public override Device Clone()
+        {
+            return null;
+        }
+
+        public override void Execute(object obj)
+        {
+            base.Update(obj);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[6,9,6,44,0],[7,37,7,48,0],[8,44,8,69,0],[10,40,10,51,0],[12,46,12,50,0],[15,9,15,10,0],[16,13,16,25,0],[17,9,17,10,0],[20,9,20,10,0],[21,13,21,30,0],[22,9,22,10,0]]);
+    </script>
+  </body>
+</html>

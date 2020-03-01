@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\source\repos\siberalt\labs_VTS\ADPP_CW\SteeringWheel.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+
+namespace ADPP_CW
+{
+    public abstract class SteeringWheel:Device
+    {
+        protected int turn;
+        protected double angle;
+        protected double leftLimit;
+        protected double rightLimit;
+
+        public int Turn =&gt; turn;
+        public double Angle =&gt; angle;
+
+        public override DeviceType Type =&gt; DeviceType.SteeringWheel;
+
+        public override object Data =&gt; new Tuple&lt;int,double&gt;(turn,angle);
+
+        public override bool DevicesFound =&gt; true;
+
+        public override abstract Device Clone();
+
+        public override abstract void Execute(object obj);
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[12,28,12,32,0],[13,32,13,37,0],[15,44,15,68,0],[17,40,17,73,1],[19,46,19,50,0]]);
+    </script>
+  </body>
+</html>

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ADPP_CW
 {
-    class Instructor : ICarListener
+    public class Instructor : ICarListener
     {
         State state;
         protected bool clutch = false;
@@ -16,6 +11,8 @@ namespace ADPP_CW
         protected double angle = 0;
 
         public double Angle => angle;
+
+        public string Answer => state.Answer;
 
         public bool HasClutch
         {

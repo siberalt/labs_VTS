@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\PrepareToMove.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+
+using System.Windows.Forms;
+
+namespace ADPP_CW
+{
+    public class PrepareToMove : State
+    {
+        public PrepareToMove(Instructor instructor) : base(instructor) { Answer = &quot;Здарова салага! Сегодня я твой инструктор Саня. Начнём... Выжимай сцепление (Q)&quot;; }
+
+        public override void brakePedalHandler(object sender, object obj)
+        {
+            Answer = &quot;Тормоз щас не к чему. Нам бы поехать для начала. Ну ты тооормоз&quot;;
+        }
+
+        public override void clutchPedalHandler(object sender, object obj)
+        {
+            if(instructor.HasClutch &amp;&amp; ((ClutchPedal)obj).HasPressure) return;
+            instructor.HasClutch = ((ClutchPedal)obj).HasPressure;
+            if (instructor.HasClutch &amp;&amp; !instructor.HasEngine) Answer = &quot;Отлично! Сцепление есть. Так давай, заводи машину теперь.(E)&quot;;
+            else Answer = &quot;Ну и чего сцепление отпустил?&quot;;
+        }
+
+        public override void engineHandler(object sender, object obj)
+        {
+            instructor.HasEngine = (obj as EngineIgnition).HasIngnition;
+            if (instructor.HasEngine)
+            {
+                if (instructor.HasClutch)
+                    Answer = &quot;Хорошо. Теперь давай снимай ручник (H)&quot;;
+                else
+                    Answer = &quot;Да ёмаё. А кто сцепление держать то будет!?&quot;;
+            }
+            else
+            {
+                Answer = &quot;Зачем двигатель заглушил?&quot;;
+            }
+        }
+
+        public override void gasPedalHandler(object sender, object obj)
+        {
+            if(!instructor.HasEngine) Answer = &quot;Куда газуешь с выключенным движком?&quot;;
+        }
+
+        public override void handbrakeHandler(object sender, object obj)
+        {
+            instructor.HasHandbrake = (obj as Handbrake).Anchored;
+            if(!instructor.HasHandbrake)
+            {
+                if(instructor.HasEngine &amp;&amp; instructor.HasClutch)
+                {
+                    Answer = &quot;Хорошо. Переходим к следующему этапу&quot;;
+                    instructor.ChangeState(new MoveState(instructor));
+                }
+                else
+                {
+                    Answer = &quot;Рано ты за ручник хватаешься! А как же предудущие шаги?&quot;;
+                }
+            }
+        }
+
+        public override void steeringWheelHandler(object sender, object obj)
+        {
+            
+        }
+
+        public override void transmissionHandler(object sender, object obj)
+        {
+            Answer = &quot;Рано ещё передачи дёргать!&quot;;
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,55,8,71,1],[8,72,8,73,1],[8,74,8,165,1],[8,166,8,167,1],[11,9,11,10,0],[12,13,12,88,0],[13,9,13,10,0],[16,9,16,10,0],[17,13,17,71,0],[17,72,17,79,0],[18,13,18,67,0],[19,13,19,63,0],[19,64,19,136,0],[20,18,20,59,0],[21,9,21,10,0],[24,9,24,10,0],[25,13,25,73,0],[26,13,26,38,0],[27,13,27,14,0],[28,17,28,42,0],[29,21,29,71,0],[31,21,31,76,0],[32,13,32,14,0],[34,13,34,14,0],[35,17,35,54,0],[36,13,36,14,0],[37,9,37,10,0],[40,9,40,10,0],[41,13,41,38,0],[41,39,41,86,0],[42,9,42,10,0],[45,9,45,10,0],[46,13,46,67,0],[47,13,47,41,0],[48,13,48,14,0],[49,17,49,65,0],[50,17,50,18,0],[51,21,51,69,0],[52,21,52,71,0],[53,17,53,18,0],[55,17,55,18,0],[56,21,56,88,0],[57,17,57,18,0],[58,13,58,14,0],[59,9,59,10,0],[62,9,62,10,0],[64,9,64,10,0],[67,9,67,10,0],[68,13,68,51,0],[69,9,69,10,0]]);
+    </script>
+  </body>
+</html>

@@ -1,40 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
 namespace ADPP_CW
 {
-    class Car: Vehicle
+    public class Car: Vehicle
     {
+        double speed = 0;
         //Поля
         bool enabled = false;
+        Point pos = new Point(0,0);
         SteeringWheel steeringWheel;
         GasPedal gasPedal;
         ClutchPedal clutchPedal;
         BrakePedal brakePedal;
         Transmission transmission;
-        Windshield windshield;
         Handbrake handbrake;
         EngineIgnition engine;
         List<ICarListener> handlers = new List<ICarListener>();
 
-        //Модель
-        CarModel model;
-
         //Свойства
+        public Point Position
+        {
+            set => pos = value;
+            get => pos;
+        }
+        
+        public double Speed
+        {
+            get => speed;
+        }
+
         public bool Enabled
         {
             get => enabled;
             set => enabled = value;
-        }
-
-        public Graphics2D Graphics
-        {
-            get => windshield.Graphics;
-            set => windshield.Graphics = value;
         }
 
         public SteeringWheel SteeringWheel
@@ -87,12 +85,6 @@ namespace ADPP_CW
             }
         }
 
-        public Windshield Windshield
-        {
-            get => windshield;
-            set => windshield = value;
-        }
-
         public Handbrake Handbrake
         {
             get => handbrake;
@@ -113,23 +105,10 @@ namespace ADPP_CW
             }
         }
 
-        public String ModelFromFile
-        {
-            set => model = new CarModel(value, new System.Drawing.Size((int)Width, (int)Length));
-        }
-
-        public CarModel Model
-        {
-            get => model;
-            set => model = value;
-        }
-
         //Обработчики
         private void steeringWheelHandler(Device sender, object obj)
         {
             if (!enabled) return;
-            model.RotateWheelVector(steeringWheel.Angle*2);
-            windshield.Execute(null);
             foreach (ICarListener listener in handlers)
                 listener.steeringWheelHandler(this, sender);
         }
@@ -137,19 +116,11 @@ namespace ADPP_CW
         private void gasPedalHandler(Device sender, object obj)
         {
             if (!enabled) return;
+            speed = 1;
+            pos.X += 1;
+            pos.Y += 1;
             if (!(engine.HasIngnition && transmission.CurrentGear != 0 && !handbrake.Anchored)) return;
-            Vector2D wheel = model.WheelVector;
-            Vector2D forward = model.ForwardVector;
-            if(transmission.CurrentGear == 5)
-            {
-                wheel.Negate();
-                forward.Negate();
-            }
-            double alpha =  Math.Sign(model.Arrangment) * Vector2D.Angle(forward,wheel);
-            model.Rotate(alpha);
-            forward = Vector2D.Normilize(forward);
-            model.Move(forward.X,forward.Y);
-            windshield.Execute(null);
+
             foreach (ICarListener listener in handlers) 
                 listener.gasPedalHandler(this, sender);
         }
@@ -157,6 +128,7 @@ namespace ADPP_CW
         private void clutchPedalHandler(Device sender, object obj)
         {
             if (!enabled) return;
+
             foreach (ICarListener listener in handlers)
                 listener.clutchPedalHandler(this, sender);
         }
@@ -164,6 +136,7 @@ namespace ADPP_CW
         private void brakePedalHandler(Device sender, object obj)
         {
             if (!enabled) return;
+            speed = 0;
             foreach (ICarListener listener in handlers)
                 listener.brakePedalHandler(this, sender);
         }
@@ -214,6 +187,5 @@ namespace ADPP_CW
         {
             AddHandler(listener);
         }
-
     }
 }

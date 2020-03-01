@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ADPP_CW
 {
-    abstract class EngineIgnition : Device
+    public abstract class EngineIgnition : Device
     {
         protected bool hasIgnition = false;
         public bool HasIngnition => hasIgnition;
@@ -23,7 +18,7 @@ namespace ADPP_CW
 
         public override void Execute(object obj)
         {
-            
+            base.Update(obj);
         }
     }
 }

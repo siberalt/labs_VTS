@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\Handbrake.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+
+namespace ADPP_CW
+{
+    public class Handbrake : Device
+    {
+        protected bool anchored = true;
+        public bool Anchored =&gt; anchored;
+        public override DeviceType Type =&gt; DeviceType.Handbrake;
+
+        public override object Data =&gt; anchored;
+
+        public override bool DevicesFound =&gt; true;
+
+        public override Device Clone()
+        {
+            return null;
+        }
+
+        public override void Execute(object obj)
+        {
+            anchored = (bool)obj;
+            base.Update(obj);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[6,9,6,40,1],[7,33,7,41,0],[8,44,8,64,0],[10,40,10,48,0],[12,46,12,50,0],[15,9,15,10,0],[16,13,16,25,0],[17,9,17,10,0],[20,9,20,10,1],[21,13,21,34,1],[22,13,22,30,1],[23,9,23,10,1]]);
+    </script>
+  </body>
+</html>

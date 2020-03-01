@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ADPP_CW
 {
 
-    abstract class State
+    public abstract class State
     {
+        String answer;
 
+        public String Answer
+        {
+            set => answer = value;
+            get => answer;
+        }
 
         protected Instructor instructor;
         public State(Instructor instructor)

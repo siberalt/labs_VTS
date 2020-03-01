@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\Instructor.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+
+namespace ADPP_CW
+{
+    public class Instructor : ICarListener
+    {
+        State state;
+        protected bool clutch = false;
+        protected bool engine = false;
+        protected bool handbrake = false;
+        protected int gear = 0;
+        protected double angle = 0;
+
+        public double Angle =&gt; angle;
+
+        public string Answer =&gt; state.Answer;
+
+        public bool HasClutch
+        {
+            get =&gt; clutch;
+            set =&gt; clutch = value;
+        }
+
+        public bool HasEngine
+        {
+            get =&gt; engine;
+            set =&gt; engine = value;
+        }
+
+        public bool HasHandbrake
+        {
+            get =&gt; handbrake;
+            set =&gt; handbrake = value;
+        }
+
+        public int Gear
+        {
+            get =&gt; gear;
+            set =&gt; gear = value;
+        }
+
+        public Instructor(State state)
+        {
+            this.state = state;
+        }
+
+        public Instructor()
+        {
+            this.state = new PrepareToMove(this);
+        }
+
+        public void ChangeState(State state)
+        {
+            this.state = state;
+        }
+
+        public void brakePedalHandler(object sender, object obj)
+        {
+            state.brakePedalHandler(sender, obj);
+        }
+
+        public void clutchPedalHandler(object sender, object obj)
+        {
+            state.clutchPedalHandler(sender, obj);
+        }
+
+        public void engineHandler(object sender, object obj)
+        {
+            state.engineHandler(sender, obj);
+        }
+
+        public void gasPedalHandler(object sender, object obj)
+        {
+            state.gasPedalHandler(sender, obj);
+        }
+
+        public void handbrakeHandler(object sender, object obj)
+        {
+            state.handbrakeHandler(sender, obj);
+        }
+
+        public void steeringWheelHandler(object sender, object obj)
+        {
+            angle += (obj as SteeringWheel).Angle;
+            state.steeringWheelHandler(sender, obj);
+        }
+
+        public void transmissionHandler(object sender, object obj)
+        {
+            state.transmissionHandler(sender, obj);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[7,9,7,39,1],[7,9,7,39,0],[8,9,8,39,1],[8,9,8,39,0],[9,9,9,42,0],[9,9,9,42,1],[10,9,10,32,1],[10,9,10,32,0],[11,9,11,36,1],[11,9,11,36,0],[13,32,13,37,0],[15,33,15,45,1],[19,20,19,26,0],[20,20,20,34,0],[25,20,25,26,0],[26,20,26,34,0],[31,20,31,29,0],[32,20,32,37,0],[37,20,37,24,1],[38,20,38,32,0],[41,9,41,39,0],[42,9,42,10,0],[43,13,43,32,0],[44,9,44,10,0],[46,9,46,28,1],[47,9,47,10,1],[48,13,48,50,1],[49,9,49,10,1],[52,9,52,10,1],[53,13,53,32,1],[54,9,54,10,1],[57,9,57,10,0],[58,13,58,50,0],[59,9,59,10,0],[62,9,62,10,0],[63,13,63,51,0],[64,9,64,10,0],[67,9,67,10,0],[68,13,68,46,0],[69,9,69,10,0],[72,9,72,10,0],[73,13,73,48,0],[74,9,74,10,0],[77,9,77,10,0],[78,13,78,49,0],[79,9,79,10,0],[82,9,82,10,0],[83,13,83,51,0],[84,13,84,53,0],[85,9,85,10,0],[88,9,88,10,0],[89,13,89,52,0],[90,9,90,10,0]]);
+    </script>
+  </body>
+</html>

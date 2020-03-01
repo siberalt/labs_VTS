@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ADPP_CW
 {
-    interface ICarListener
+    public interface ICarListener
     {
         void steeringWheelHandler(object sender, object obj);
 

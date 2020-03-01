@@ -61,9 +61,7 @@ namespace ADPP_CW
 
         public int GetHashCode(Tuple<int, string, DeviceType> obj)
         {
-            //return obj.GetHashCode();
-            return obj.Item1.GetHashCode() ^ obj.Item2.GetHashCode() ^ obj.Item3.GetHashCode();
-            
+            return obj.Item1.GetHashCode() ^ obj.Item2.GetHashCode() ^ obj.Item3.GetHashCode();   
         }
     }
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\DevicePool.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ADPP_CW
+{
+    class DevicePool: IEqualityComparer&lt;Tuple&lt;int, String, DeviceType&gt;&gt;
+    {
+        static DevicePool pool = new DevicePool();
+        Dictionary&lt;Tuple&lt;int, String, DeviceType&gt;, Device&gt; Devices = new Dictionary&lt;Tuple&lt;int, string, DeviceType&gt;, Device&gt;(Instance);
+
+        private DevicePool() { }
+
+        public static DevicePool Instance =&gt; pool;
+
+        public void IntitialziePool(Device[] adapters)
+        {
+            foreach(Device adapter in adapters)
+            {
+                if (!adapter.DevicesFound) continue;
+                Device device = adapter;
+                while (device != null) 
+                {
+                    Devices.Add(new Tuple&lt;int, string, DeviceType&gt;(device.ID, device.Description, device.Type), device);
+                    device = adapter.Clone();
+                }
+            }
+        }
+
+        Device ErrorHandler(Device device)
+        {
+            if (device == null) MessageBox.Show(&quot;Запрашиваемое устройство не найдено в пуле устройств!&quot;,&quot;Ошибка!&quot;,MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return device;
+        }
+
+        public Device this[DeviceType type]
+        {
+            get =&gt; ErrorHandler(Devices[new Tuple&lt;int, string, DeviceType&gt;(-1, null, type)]);
+        }
+
+        public Device this[DeviceType type, String Name]
+        {
+            get =&gt; ErrorHandler(Devices[new Tuple&lt;int, string, DeviceType&gt;(-1, Name, type)]);
+        }
+
+        public void Detach(int id)
+        {
+            Devices.Remove(new Tuple&lt;int, string, DeviceType&gt;(id, null, DeviceType.Undefined));
+        }
+
+        public bool Equals(Tuple&lt;int, string, DeviceType&gt; y, Tuple&lt;int, string, DeviceType&gt; x)
+        {
+            if (x.Item1 == -1 &amp;&amp; x.Item2 == null &amp;&amp; x.Item3 == y.Item3) return true;
+            if (x.Item1 == y.Item1 &amp;&amp; x.Item2 == null &amp;&amp; x.Item3 == DeviceType.Undefined) return true;
+            if (x.Item1 == -1 &amp;&amp; x.Item2 == y.Item2 &amp;&amp; x.Item3 == y.Item3) return true;
+            return false;
+        }
+
+        public int GetHashCode(Tuple&lt;int, string, DeviceType&gt; obj)
+        {
+            return obj.Item1.GetHashCode() ^ obj.Item2.GetHashCode() ^ obj.Item3.GetHashCode();   
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[12,9,12,51,0],[13,9,13,135,0],[15,9,15,29,0],[15,30,15,31,0],[15,32,15,33,0],[17,46,17,50,0],[20,9,20,10,0],[21,13,21,20,0],[21,21,21,35,0],[21,36,21,38,0],[21,39,21,47,0],[22,13,22,14,0],[23,17,23,43,0],[23,44,23,53,0],[24,17,24,41,0],[25,17,25,39,0],[26,17,26,18,0],[27,21,27,121,0],[28,21,28,46,0],[29,17,29,18,0],[30,13,30,14,0],[31,9,31,10,0],[34,9,34,10,0],[35,13,35,32,0],[35,33,35,159,0],[36,13,36,27,0],[37,9,37,10,0],[41,20,41,93,0],[46,20,46,93,0],[50,9,50,10,0],[51,13,51,96,0],[52,9,52,10,0],[55,9,55,10,0],[56,13,56,72,0],[56,73,56,85,0],[57,13,57,90,0],[57,91,57,103,0],[58,13,58,75,0],[58,76,58,88,0],[59,13,59,26,0],[60,9,60,10,0],[63,9,63,10,0],[64,13,64,96,0],[65,9,65,10,0]]);
+    </script>
+  </body>
+</html>

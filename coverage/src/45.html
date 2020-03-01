@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\Vehicle.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+
+namespace ADPP_CW
+{
+    public abstract class Vehicle
+    {
+        static Vehicle currentVehicle;
+        public static Vehicle CurrentVehicle =&gt; currentVehicle;
+
+        double weight;
+        double acceleration;
+        double maxSpeed;
+        double height;
+        double width;
+        double length;
+        String description;
+
+        public double Weight
+        {
+            get =&gt; weight;
+            set =&gt; weight = value;
+        }
+
+        public double Acceleration
+        {
+            get =&gt; acceleration;
+            set =&gt; acceleration = value;
+        }
+
+        public double MaxSpeed
+        {
+            get =&gt; maxSpeed;
+            set =&gt; maxSpeed = value;
+        }
+
+        public double Height
+        {
+            get =&gt; height;
+            set =&gt; height = value;
+        }
+
+        public double Width
+        {
+            get =&gt; width;
+            set =&gt; width = value;
+        }
+
+        public double Length
+        {
+            get =&gt; length;
+            set =&gt; length = value;
+        }
+
+
+        public Vehicle()
+        {
+            currentVehicle = this;
+        }
+
+        public String Description
+        {
+            get =&gt; description;
+            set =&gt; description = value;
+        }
+
+        public abstract void AddHandler(object obj);
+        
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,49,8,63,0],[20,20,20,26,0],[21,20,21,34,0],[26,20,26,32,0],[27,20,27,40,0],[32,20,32,28,0],[33,20,33,36,0],[38,20,38,26,0],[39,20,39,34,0],[44,20,44,25,0],[45,20,45,33,0],[50,20,50,26,0],[51,20,51,34,0],[55,9,55,25,1],[56,9,56,10,1],[57,13,57,35,1],[58,9,58,10,1],[62,20,62,31,0],[63,20,63,39,0]]);
+    </script>
+  </body>
+</html>

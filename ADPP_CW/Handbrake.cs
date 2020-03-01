@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ADPP_CW
 {
-    class Handbrake : Device
+    public class Handbrake : Device
     {
         protected bool anchored = true;
         public bool Anchored => anchored;
@@ -23,7 +18,8 @@ namespace ADPP_CW
 
         public override void Execute(object obj)
         {
-            
+            anchored = (bool)obj;
+            base.Update(obj);
         }
     }
 }

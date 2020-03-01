@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\1\Source\Repos\siberalt\labs_VTS\ADPP_CW\Device adapters\MechanicTransmission.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+
+
+namespace ADPP_CW
+{
+    public class MechanicTransmission : Transmission
+    {
+        ClutchPedal clutch = null;
+        public MechanicTransmission(int min,int max)
+        {
+            maxGear = max;
+            minGear = min;
+            currentGear = 0;
+        }
+
+        public MechanicTransmission(int min, int max,ClutchPedal clutch) : this(min,max)
+        {
+            this.clutch = clutch;
+        }
+
+        public ClutchPedal ClutchPedal
+        {
+            get =&gt; clutch;
+            set =&gt; clutch = value;
+        }
+
+
+        public override Device Clone()
+        {
+            return null;
+        }
+
+        public override void Execute(object obj)
+        {
+            base.Update(obj);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[7,9,7,35,1],[8,9,8,53,1],[9,9,9,10,1],[10,13,10,27,1],[11,13,11,27,1],[12,13,12,29,1],[13,9,13,10,1],[15,76,15,89,0],[16,9,16,10,0],[17,13,17,34,0],[18,9,18,10,0],[22,20,22,26,0],[23,20,23,34,0],[28,9,28,10,0],[29,13,29,25,0],[30,9,30,10,0],[33,9,33,10,1],[34,13,34,30,1],[35,9,35,10,1]]);
+    </script>
+  </body>
+</html>
